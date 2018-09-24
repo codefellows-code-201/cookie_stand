@@ -6,14 +6,17 @@ var firstAndPike = {
   min: 23,
   max: 65,
   averageCookies: 6.3,
+  cookiesPurchasedPerHour: [],
+  customersPerHour: [],
+
   calculateAvgCustomersPerHour: function (){
     for(var i = 0 ; i < 15 ; i++) {
       var min = Math.ceil(this.min);
       var max = Math.floor(this.max);
-      var customers = Math.floor(Math.random() * (max - min + 1)) + min; 
+      var customers = Math.floor(Math.random() * (max - min + 1)) + min;
       this.customersPerHour.push(customers);
     }
-    return customers; 
+    return customers;
   },
 
   calculateAvgCookiesPerHour: function (){
@@ -23,8 +26,7 @@ var firstAndPike = {
     }
     return cookiesPerHour;
   }
-  cookiesPurchasedPerHour: [],
-  customersPerHour: [],
+
   // cookiesPurchased: this.averageCookies * this.avgCustomers(),
 };
 
@@ -43,7 +45,7 @@ console.log(firstAndPike);
 //   avgCustomers: function (min,max){
 //     min = Math.ceil(min);
 //     max = Math.floor(max);
-//     var customers = Math.floor(Math.random() * (max - min + 1)) + min; 
+//     var customers = Math.floor(Math.random() * (max - min + 1)) + min;
 //     return customers;
 // };
 
@@ -57,7 +59,7 @@ console.log(firstAndPike);
 //   avgCustomers: function (min,max){
 //     min = Math.ceil(min);
 //     max = Math.floor(max);
-//     var customers = Math.floor(Math.random() * (max - min + 1)) + min; 
+//     var customers = Math.floor(Math.random() * (max - min + 1)) + min;
 //     return customers;
 // };
 
@@ -66,25 +68,25 @@ console.log(firstAndPike);
 //   name: 'Salmon Cookies, Capitol Hill',
 //   min: 20,
 //   max: 38,
-//   averageCookies: 2.3, 
+//   averageCookies: 2.3,
 //   cookiesPerHour:[],
 //   avgCustomers: function (min,max){
 //     min = Math.ceil(min);
 //     max = Math.floor(max);
-//     var customers = Math.floor(Math.random() * (max - min + 1)) + min; 
+//     var customers = Math.floor(Math.random() * (max - min + 1)) + min;
 //     return customers;
 // };
 
 // //Object Literal - Store #5
 // var alki = {
 //   name: 'Salmon Cookies, Alki',
-//   min: 2, 
+//   min: 2,
 //   max: 16,
 //   averageCookies: 4.6,
 //   cookiesPerHour:[],
 //   avgCustomers: function (min,max){
 //     min = Math.ceil(min);
 //     max = Math.floor(max);
-//     var customers = Math.floor(Math.random() * (max - min + 1)) + min; 
+//     var customers = Math.floor(Math.random() * (max - min + 1)) + min;
 //     return customers;
 // };
