@@ -1,0 +1,20 @@
+body {
+  /* Radial Gradient from MDN */
+  background:
+    repeating-linear-gradient(190deg, rgba(0, 60, 255, 0.5) 40px,
+    rgba(0, 166, 255, 0.5) 80px, rgba(0, 255, 251, 0.5) 120px,
+    rgba(233, 164, 111, 0.5) 160px, rgba(0, 0, 255, 0.5) 200px,
+    rgba(0, 85, 130, 0.5) 240px, rgba(130, 231, 238, 0.5) 280px,
+    rgba(0, 81, 255, 0.5) 300px),
+    repeating-linear-gradient(-180deg, rgba(66, 111, 158, 0.5) 30px,
+    rgba(0, 229, 255, 0.5) 60px, rgba(187, 116, 62, 0.5) 90px,
+    rgba(92, 150, 172, 0.5) 120px, rgba(0, 0, 255, 0.5) 150px,
+    rgba(0, 100, 130, 0.5) 180px, rgba(130, 155, 238, 0.5) 210px,
+    rgba(0, 136, 255, 0.5) 230px),
+    repeating-linear-gradient(30deg, rgb(0, 195, 255) 50px, rgb(43, 0, 255) 100px,
+    rgb(0, 166, 255) 150px, rgb(0, 128, 126) 200px, rgb(0, 255, 136) 250px,
+    rgb(0, 130, 111) 300px, rgb(130, 191, 238) 350px, rgb(255, 162, 0) 370px);
+  color: white;
+  /* /* background-image: url("images/totem_background2_small_transparent.png"); */
+  /* background-repeat: repeat; */
+}
