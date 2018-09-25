@@ -5,9 +5,11 @@ var firstAndPike = {
   name: 'Salmon Cookies, First & Pike',
   min: 23,
   max: 65,
-  averageCookies: 6.3,
+  averageCookies: 6.3, //be more specific about variable name
   cookiesPurchasedPerHour: [],
   customersPerHour: [],
+  
+// move below function outside the object and add store name as dot notation at the beginning. firstAndPike.calculateAvgCustomersPerHour
 
   calculateAvgCustomersPerHour: function (){
     for(var i = 0 ; i < 15 ; i++) {
