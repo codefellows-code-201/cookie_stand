@@ -35,10 +35,26 @@ firstAndPike.sumCookiesSoldPerDay = function() {
     totalCookies += this.cookiesSoldEachHour[i];
   this.totalCookiesPerDay.push(totalCookies);
 };
+//===============================================
+firstAndPike.renderCustomers = function(){
+  var storesContainer = document.getElementById("stores");
+  var storeNameEl = document.createElement('h2');
+  storeNameEl.textContent = this.name;
+  storesContainer.appendChild(storeNameEl);
 
+  var unorderedListElement = document.createElement('ul');
+  for(var i =0 ; i < this.randomCustomerPerHour.length ; i++){
+    var listItemEl = document.createElement('li');
+    unorderedListElement.appendChild(listItemEl);
+  }
+  storesContainer.appendChild(unorderedListElement);
+};
+//=================================================
+//=================================================
 firstAndPike.calculateAvgCustomersPerHour();
 firstAndPike.calculateCookiesPurchasedPerHour();
 firstAndPike.sumCookiesSoldPerDay();
+firstAndPike.renderCustomers();
 console.log(firstAndPike);
 
 
