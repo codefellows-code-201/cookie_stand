@@ -18,3 +18,7 @@ body {
   /* /* background-image: url("images/totem_background2_small_transparent.png"); */
   /* background-repeat: repeat; */
 }
+
+#stores {
+  background: rgb(62, 128, 199);
+}
