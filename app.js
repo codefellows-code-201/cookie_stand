@@ -2,6 +2,8 @@
 //Random Number Function from MDN
 //All stores are open 6 AM to 8 PM
 var hoursOpen = ['06:00 AM', '07:00 AM', '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM', '08:00 PM'];
+var storeLocations = [];
+var cookieTable = document.getElementById('cookie-table');
 
 // var totalCookies = 0;
 
@@ -14,14 +16,18 @@ var Store = function(name, min, max, averageCookiesSoldPerCustomer) {
   this.cookiesSoldEachHour = [];
   this.randomCustomersPerHour = [];
   this.totalCookies = 0;
+  storeLocations.push(this);
 };
 
 //New stores using the constructor function
-var firstAndPike = new Store('Salmon Cookies, First & Pike', 23, 65, 6.3);
-var seaTacAirport = new Store('Salmon Cookies, SeaTac Airport', 3, 24, 1.2);
-var seattleCenter = new Store('Salmon Cookies, Seattle Center', 11, 38, 3.7);
-var capitolHill = new Store('Salmon Cookies, Capitol Hill', 20, 38, 2.3);
-var alki = new Store('Salmon Cookies, Alki', 2, 16, 4.6);
+var firstAndPike = new Store('First & Pike', 23, 65, 6.3);
+var seaTacAirport = new Store('SeaTac Airport', 3, 24, 1.2);
+var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
+var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
+var alki = new Store('Alki', 2, 16, 4.6);
+
+
+console.log(storeLocations);
 
 //Prototypes
 Store.prototype.calculateAvgCustomersPerHour = function(){
@@ -66,19 +72,55 @@ Store.prototype.renderTimeCustomersCookiesSum = function(){
 };
 
 Store.prototype.renderTable = function(){
-  var cookieTable = document.getElementById('cookie-table');
-  var tableHeaderRowEl = document.createElement('tr');
-  tableHeaderRowEl.textContent = hoursOpen[0];
-  cookieTable.appendChild(tableHeaderRowEl);
+  var makeATableRow = document.createElement('tr');
+  cookieTable.appendChild(makeATableRow);
+  makeATableRow.textContent = 'Store Name';
+  for (var i = 0 ; i <= hoursOpen.length ; i++){
+    var addHeaderDataToTableRow = document.createElement('th');
+    addHeaderDataToTableRow.textContent = hoursOpen[i];
+    makeATableRow.appendChild(addHeaderDataToTableRow);
+  }
+  addHeaderDataToTableRow.textContent = 'Total Cookies Sold';
+  makeATableRow.appendChild(addHeaderDataToTableRow);
 };
 
+Store.prototype.renderTableData = function(){
+  this.calculateAvgCustomersPerHour();
+  this.calculateCookiesPurchasedPerHour();
+  this.sumCookiesSoldPerDay();
+  var storeTableRowEl = document.createElement('tr');
+  storeTableRowEl.textContent = this.name;
+  cookieTable.appendChild(storeTableRowEl);
+  console.log(this.cookiesSoldEachHour.length);
+  for (var i = 0 ; i < this.cookiesSoldEachHour.length ; i++){
+    console.log(this.cookiesSoldEachHour[i]);
+    var addCookieDataToTableRow = document.createElement('td');
+    addCookieDataToTableRow.textContent = this.cookiesSoldEachHour[i];
+    storeTableRowEl.appendChild(addCookieDataToTableRow);
+  }
+  addCookieDataToTableRow = document.createElement('td');
+  addCookieDataToTableRow.textContent = this.totalCookies;
+  storeTableRowEl.appendChild(addCookieDataToTableRow);
+  cookieTable.appendChild(storeTableRowEl);
+};
+
+// Store.prototype.renderTableData = function(){
+//   var cookieTable = document.getElementById('cookie-table');
+ 
+// }
+
 //Call the Methods
-firstAndPike.renderTimeCustomersCookiesSum();
+// firstAndPike.renderTimeCustomersCookiesSum();
 firstAndPike.renderTable();
-seaTacAirport.renderTimeCustomersCookiesSum();
-seattleCenter.renderTimeCustomersCookiesSum();
-capitolHill.renderTimeCustomersCookiesSum();
-alki.renderTimeCustomersCookiesSum();
+firstAndPike.renderTableData();
+seaTacAirport.renderTableData();
+capitolHill.renderTableData();
+alki.renderTableData();
+seattleCenter.renderTableData();
+// seaTacAirport.renderTimeCustomersCookiesSum();
+// seattleCenter.renderTimeCustomersCookiesSum();
+// capitolHill.renderTimeCustomersCookiesSum();
+// alki.renderTimeCustomersCookiesSum();
 
 console.log(alki);
 
