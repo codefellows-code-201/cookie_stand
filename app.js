@@ -92,10 +92,8 @@ Store.prototype.renderTableData = function(){
   var storeTableRowEl = document.createElement('tr');
   storeTableRowEl.textContent = this.name;
   cookieTable.appendChild(storeTableRowEl);
-  // console.log(this.cookiesSoldEachHour.length);
 
   for (var i = 0 ; i < this.cookiesSoldEachHour.length ; i++){
-    // console.log(this.cookiesSoldEachHour[i]);
     var addCookieDataToTableRow = document.createElement('td');
     addCookieDataToTableRow.textContent = this.cookiesSoldEachHour[i];
     storeTableRowEl.appendChild(addCookieDataToTableRow);
