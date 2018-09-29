@@ -22,3 +22,11 @@ body {
 #stores {
   background: rgb(62, 128, 199);
 }
+
+table#cookie-table {
+  border: black solid 10px;
+}
+
+td {
+  border: orange solid 3px;
+}
