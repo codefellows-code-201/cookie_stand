@@ -3,7 +3,7 @@
 //All stores are open 6 AM to 8 PM
 var hoursOpen = ['06:00 AM', '07:00 AM', '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM', '08:00 PM'];
 
-var totalCookies = 0;
+// var totalCookies = 0;
 
 //Constructor Function
 var Store = function(name, min, max, averageCookiesSoldPerCustomer) {
@@ -13,7 +13,7 @@ var Store = function(name, min, max, averageCookiesSoldPerCustomer) {
   this.averageCookiesSoldPerCustomer = averageCookiesSoldPerCustomer;
   this.cookiesSoldEachHour = [];
   this.randomCustomersPerHour = [];
-  this.totalCookiesPerDay = [];
+  this.totalCookies = 0;
 };
 
 //New stores using the constructor function
@@ -29,76 +29,55 @@ Store.prototype.calculateAvgCustomersPerHour = function(){
     var randomCustomers = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
     this.randomCustomersPerHour.push(randomCustomers);
   }
+};
+Store.prototype.calculateCookiesPurchasedPerHour = function() {
+  for(var i = 0 ; i < hoursOpen.length ; i++) {
+    var cookiesPurchasedPerHour = Math.round(this.randomCustomersPerHour[i] * this.averageCookiesSoldPerCustomer);
+    this.cookiesSoldEachHour.push(cookiesPurchasedPerHour);
+  }
+};
 
-  Store.prototype.calculateCookiesPurchasedPerHour = function() {
-    for(var i = 0 ; i < hoursOpen.length ; i++) {
-      var cookiesPurchasedPerHour = Math.round(this.randomCustomersPerHour[i] * this.averageCookiesSoldPerCustomer);
-      this.cookiesSoldEachHour.push(cookiesPurchasedPerHour);
-    }
-  };
+Store.prototype.sumCookiesSoldPerDay = function() {
+  for(var i = 0; i < this.cookiesSoldEachHour.length ; i++)
+    this.totalCookies += this.cookiesSoldEachHour[i];
+  // this.totalCookiesPerDay.push(totalCookies);
+};
 
-  Store.prototype.sumCookiesSoldPerDay = function() {
-    for(var i = 0; i < this.cookiesSoldEachHour.length ; i++)
-      totalCookies += this.cookiesSoldEachHour[i];
-    this.totalCookiesPerDay.push(totalCookies);
-  };
+Store.prototype.renderTimeCustomersCookiesSum = function(){
+  var storesContainer = document.getElementById('stores');
+  var storeNameEl = document.createElement('h2');
+  storeNameEl.textContent = this.name;
+  storesContainer.appendChild(storeNameEl);
 
-  Store.prototype.renderTimeCustomersCookiesSum = function(){
-    var storesContainer = document.getElementById('stores');
-    var storeNameEl = document.createElement('h2');
-    storeNameEl.textContent = this.name;
-    storesContainer.appendChild(storeNameEl);
+  var unorderedListElements = document.createElement('ul');
+  this.calculateAvgCustomersPerHour();
+  this.calculateCookiesPurchasedPerHour();
+  this.sumCookiesSoldPerDay();
 
-    var unorderedListElements = document.createElement('ul');
-    this.calculateAvgCustomersPerHour();
-    this.calculateCookiesPurchasedPerHour();
-    this.sumCookiesSoldPerDay();
-
-    for(var i =0 ; i < hoursOpen.length ; i++){
-      var listItemEl = document.createElement('li');
-      listItemEl.textContent = ((hoursOpen[i]) + ' : ' + (this.randomCustomersPerHour[i]) + ' : ' + (this.cookiesSoldEachHour[i]));
-      unorderedListElements.appendChild(listItemEl);
-    }
-    var listItemEl2 = document.createElement('li');
-    listItemEl2.textContent = 'Total Cookies Sold Today ' + this.totalCookiesPerDay[0];
-    unorderedListElements.appendChild(listItemEl2);
-    storesContainer.appendChild(unorderedListElements);
-  };
+  for(var i =0 ; i < hoursOpen.length ; i++){
+    var listItemEl = document.createElement('li');
+    listItemEl.textContent = ((hoursOpen[i]) + ' : ' + (this.randomCustomersPerHour[i]) + ' : ' + (this.cookiesSoldEachHour[i]));
+    unorderedListElements.appendChild(listItemEl);
+  }
+  var listItemEl2 = document.createElement('li');
+  listItemEl2.textContent = 'Total Cookies Sold Today ' + this.totalCookies;
+  unorderedListElements.appendChild(listItemEl2);
+  storesContainer.appendChild(unorderedListElements);
 };
 
 Store.prototype.renderTable = function(){
   var cookieTable = document.getElementById('cookie-table');
   var tableHeaderRowEl = document.createElement('tr');
-  tableHeaderRowEl.textContent = hoursOpen[1];
+  tableHeaderRowEl.textContent = hoursOpen[0];
   cookieTable.appendChild(tableHeaderRowEl);
 };
 
 //Call the Methods
-//Question - Is there a more compact way to do this?
-firstAndPike.calculateAvgCustomersPerHour();
-firstAndPike.calculateCookiesPurchasedPerHour();
-firstAndPike.sumCookiesSoldPerDay();
 firstAndPike.renderTimeCustomersCookiesSum();
 firstAndPike.renderTable();
-
-seaTacAirport.calculateAvgCustomersPerHour();
-seaTacAirport.calculateCookiesPurchasedPerHour();
-seaTacAirport.sumCookiesSoldPerDay();
 seaTacAirport.renderTimeCustomersCookiesSum();
-
-seattleCenter.calculateAvgCustomersPerHour();
-seattleCenter.calculateCookiesPurchasedPerHour();
-seattleCenter.sumCookiesSoldPerDay();
 seattleCenter.renderTimeCustomersCookiesSum();
-
-capitolHill.calculateAvgCustomersPerHour();
-capitolHill.calculateCookiesPurchasedPerHour();
-capitolHill.sumCookiesSoldPerDay();
 capitolHill.renderTimeCustomersCookiesSum();
-
-alki.calculateAvgCustomersPerHour();
-alki.calculateCookiesPurchasedPerHour();
-alki.sumCookiesSoldPerDay();
 alki.renderTimeCustomersCookiesSum();
 
 console.log(alki);
