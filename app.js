@@ -11,9 +11,9 @@ var Store = function(name, min, max, averageCookiesSoldPerCustomer) {
   this.min = min;
   this.max = max;
   this.averageCookiesSoldPerCustomer = averageCookiesSoldPerCustomer;
-  this.cookiesSoldEachHour = cookiesSoldEachHour;
-  this.randomCustomersPerHour = randomCustomersPerHour;
-  this.totalCookiesPerDay = totalCookiesPerDay;
+  this.cookiesSoldEachHour = [];
+  this.randomCustomersPerHour = [];
+  this.totalCookiesPerDay = [];
 };
 
 //New stores using the constructor function
@@ -66,18 +66,48 @@ Store.prototype.calculateAvgCustomersPerHour = function(){
   };
 };
 
-//Call the Methods
-Store.calculateAvgCustomersPerHour();
-Store.calculateCookiesPurchasedPerHour();
-Store.sumCookiesSoldPerDay();
-Store.renderTimeCustomersCookiesSum();
+Store.prototype.renderTable = function(){
+  var cookieTable = document.getElementById('cookie-table');
+  var tableHeaderRowEl = document.createElement('tr');
+  tableHeaderRowEl.textContent = hoursOpen[1];
+  cookieTable.appendChild(tableHeaderRowEl);
+};
 
+//Call the Methods
+//Question - Is there a more compact way to do this?
+firstAndPike.calculateAvgCustomersPerHour();
+firstAndPike.calculateCookiesPurchasedPerHour();
+firstAndPike.sumCookiesSoldPerDay();
+firstAndPike.renderTimeCustomersCookiesSum();
+firstAndPike.renderTable();
+
+seaTacAirport.calculateAvgCustomersPerHour();
+seaTacAirport.calculateCookiesPurchasedPerHour();
+seaTacAirport.sumCookiesSoldPerDay();
+seaTacAirport.renderTimeCustomersCookiesSum();
+
+seattleCenter.calculateAvgCustomersPerHour();
+seattleCenter.calculateCookiesPurchasedPerHour();
+seattleCenter.sumCookiesSoldPerDay();
+seattleCenter.renderTimeCustomersCookiesSum();
+
+capitolHill.calculateAvgCustomersPerHour();
+capitolHill.calculateCookiesPurchasedPerHour();
+capitolHill.sumCookiesSoldPerDay();
+capitolHill.renderTimeCustomersCookiesSum();
+
+alki.calculateAvgCustomersPerHour();
+alki.calculateCookiesPurchasedPerHour();
+alki.sumCookiesSoldPerDay();
+alki.renderTimeCustomersCookiesSum();
+
+console.log(alki);
 
 //================================================================
 //Old Object Literals
 //================================================================
 
-//Object Literal - Store #1
+//Object Literal - firstAndPike #1
 // var firstAndPike = {
 //   name: 'Salmon Cookies, First & Pike',
 //   header: 'Hour of the Day : Customers Each Hour : Cookies Sold Each Hour',
@@ -295,13 +325,13 @@ Store.renderTimeCustomersCookiesSum();
 // };
 
 // capitolHill.renderTimeCustomersCookiesSum = function(){
-//   var storesContainer = document.getElementById('stores');
-//   var storeNameEl = document.createElement('h2');
-//   storeNameEl.textContent = this.name;
-//   storesContainer.appendChild(storeNameEl);
-//   // var timeListNameEl = document.createElement('h3');
-//   // timeListNameEl.textContent = this.header;
-//   // storesContainer.appendChild(timeListNameEl);
+// var storesContainer = document.getElementById('stores');
+// var storeNameEl = document.createElement('h2');
+// storeNameEl.textContent = this.name;
+// storesContainer.appendChild(storeNameEl);
+// var timeListNameEl = document.createElement('h3');
+// timeListNameEl.textContent = this.header;
+// storesContainer.appendChild(timeListNameEl);
 
 //   var unorderedListElements = document.createElement('ul');
 //   this.calculateAvgCustomersPerHour();
