@@ -8,8 +8,35 @@
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <title>Salmon Cookie Sales</title>
 </head>
-
 <body>
+  <form id="store-generator-form">
+    <fieldset>
+      <legend>New Store Generator</legend>
+      <div>
+        <label for="store-name">Store Name</label>
+        <input name="store-name" type="text"/>
+      </div>
+
+      <div>
+        <label for="min-customers">Minimum Customers</label>
+        <input name="min-customers" type="number"/>
+      </div>
+
+      <div>
+        <label for="max-customers">Maximum Customers</label>
+        <input name="max-customers" type="number"/>
+      </div>
+
+      <div>
+        <label for="avg-cookies-sold">Avg Cookies Sold Per Customer</label>
+        <input name="avg-cookies-sold" type="number"/>
+      </div>
+
+      <div>
+        <button id="newStore" type="submit">Create New Store</button>
+      </div>
+    </fieldset>
+  </form>
   <h1 id="salesTitle">Salmon Cookie Sales</h1>
 
   <section id="stores"></section>

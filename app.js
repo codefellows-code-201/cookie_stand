@@ -5,6 +5,14 @@ var hoursOpen = ['06:00 AM', '07:00 AM', '08:00 AM', '09:00 AM', '10:00 AM', '11
 var storeLocations = [];
 var cookieTable = document.getElementById('cookie-table');
 
+//Run the Form
+var makeStore = function(makeStoreEvent){
+  makeStoreEvent.preventDefault();
+  console.log(makeStoreEvent);
+};
+var storeForm = document.getElementById('store-generator-form');
+storeForm.addEventListener('submit', makeStore);
+
 
 //Constructor Function
 var Store = function(name, min, max, averageCookiesSoldPerCustomer) {
