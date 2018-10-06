@@ -9,7 +9,16 @@ var cookieTable = document.getElementById('cookie-table');
 var makeStore = function(makeStoreEvent){
   makeStoreEvent.preventDefault();
   console.log(makeStoreEvent);
+  var locationName = makeStoreEvent.target['store-name'].value;
+  var minCust = makeStoreEvent.target['min-customers'].value;
+  var maxCust = makeStoreEvent.target['max-customers'].value;
+  var avgCookies = makeStoreEvent.target['avg-cookies-sold'].value;
+
+  var newStore = new Store(locationName.value, minCust.value, maxCust.value, avgCookies.value);
+
+  newStore.renderTableData();
 };
+
 var storeForm = document.getElementById('store-generator-form');
 storeForm.addEventListener('submit', makeStore);
 
