@@ -18,9 +18,16 @@ var makeStore = function(makeStoreEvent){
   var avgCookies = parseInt(makeStoreEvent.target['avg-cookies-sold'].value);
   console.log(avgCookies);
 
-  var newStore = new Store(locationName.value, minCust.value, maxCust.value, avgCookies.value);
+  var newStore = new Store(locationName, minCust, maxCust, avgCookies);
 
+  cookieTable.deleteRow(cookieTable.rows.length -1);
   newStore.renderTableData();
+  newStore.renderTableFooter();
+
+  makeStoreEvent.target['store-name'].value=null;
+  makeStoreEvent.target['min-customers'].value=null;
+  makeStoreEvent.target['max-customers'].value=null;
+  makeStoreEvent.target['avg-cookies-sold'].value=null;
 };
 
 var storeForm = document.getElementById('store-generator-form');
