@@ -10,9 +10,13 @@ var makeStore = function(makeStoreEvent){
   makeStoreEvent.preventDefault();
   console.log(makeStoreEvent);
   var locationName = makeStoreEvent.target['store-name'].value;
-  var minCust = makeStoreEvent.target['min-customers'].value;
-  var maxCust = makeStoreEvent.target['max-customers'].value;
-  var avgCookies = makeStoreEvent.target['avg-cookies-sold'].value;
+  console.log(locationName);
+  var minCust = parseInt(makeStoreEvent.target['min-customers'].value);
+  console.log(minCust);
+  var maxCust = parseInt(makeStoreEvent.target['max-customers'].value);
+  console.log(maxCust);
+  var avgCookies = parseInt(makeStoreEvent.target['avg-cookies-sold'].value);
+  console.log(avgCookies);
 
   var newStore = new Store(locationName.value, minCust.value, maxCust.value, avgCookies.value);
 
